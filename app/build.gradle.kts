@@ -1,3 +1,7 @@
+import com.semirsuljevic.EtheraBrandFlavor
+import com.semirsuljevic.EtheraFlavorDimension
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.convention.android.application)
     alias(libs.plugins.convention.android.application.compose)
@@ -20,9 +24,24 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+
+    flavorDimensions += EtheraFlavorDimension.version.name
+    productFlavors {
+        EtheraBrandFlavor.values().forEach {
+            create(it.name) {
+                dimension = it.dimension.name
+                applicationId = it.applicationId
+                
+            }
         }
     }
     compileOptions {
@@ -36,10 +55,16 @@ android {
         compose = true
         buildConfig = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/gradle/incremental.annotation.processors"
+        }
+    }
 }
 
 dependencies {
-
+    implementation(project(":UI"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)

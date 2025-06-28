@@ -23,4 +23,5 @@ dependencyResolutionManagement {
 rootProject.name = "Task"
 include(":app")
 include(":UI")
+include(":Foundation")
  

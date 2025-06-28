@@ -1,7 +1,8 @@
-package com.semirsuljevic.ui
+package com.semirsuljevic.foundation
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import kotlin.test.Test
+import org.junit.Test
+
+import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

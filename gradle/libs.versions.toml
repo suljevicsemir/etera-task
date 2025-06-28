@@ -1,32 +1,110 @@
 [versions]
-agp = "8.8.0"
-kotlin = "2.0.0"
+agp = "8.6.1"
+kotlin = "1.9.22"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
+junitPlugin = "1.8.2.1"
+parcelize = "1.8.10"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+compose-bom = "2023.08.00"
+#switching to bom for compose gives out an error, even if this 
+#is actually the latest version (stable0
+compose="1.8.3"
+composeMaterial = "1.3.0-beta03"
+ksp = "1.9.10-1.0.13"
+hilt = "2.55"
+hiltExt = "1.2.0"
+google-services = "4.4.3"
+serialization-json = "1.6.0"
+#used by convention plugins
+kotlin-compiler = "1.5.10"
+appcompat = "1.7.1"
+material = "1.12.0"
+coroutineAndroid = "1.7.3"
+
+#Testing
+mockk="1.13.7"
+truth="1.1.5"
+
 
 [libraries]
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose" }
+compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+
+#Testing
+jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+jupiter-plugin = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "junitPlugin" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockAndroid = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+truth= { group = "com.google.truth", name = "truth", version.ref = "truth" }
+testCoroutine = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutineAndroid" }
+
+#Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
+hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
+hilt-nav-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltExt" }
+
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
+lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "lifecycleRuntimeKtx" }
+lifecycle-runtime-testing = { group = "androidx.lifecycle", name = "lifecycle-runtime-testing", version.ref = "lifecycleRuntimeKtx" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
+
+
+
+# Build - Logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+junit5 = { id = "de.mannodermaus.android-junit5", version = "unspecified"}
+kotlin-parcelize = { id = "kotlin-parcelize", version.ref = "parcelize"}
+
+# Convention Plugins
+convention-android-application = { id = "ethera.android.application", version = "unspecified" }
+convention-android-application-compose = { id = "ethera.android.application.compose", version = "unspecified"}
+convention-feature = { id = "ethera.android.feature", version = "unspecified"}
+convention-android-library-compose = { id = "ethera.android.library.compose", version = "unspecified"}
+convention-android-library = { id = "ethera.android.library", version = "unspecified"}
+convention-android-hilt = { id = "ethera.android.hilt", version = "unspecified"}
+convention-android-buildtype = { id = "ethera.android.buildtype", version = "unspecified" }
+convention-android-project-flavor = { id = "ethera.android.ProjectFlavor", version = "unspecified"}
+googleServices = {id = "com.google.gms.google-services", version.ref = "google-services"}
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+
+
+
 

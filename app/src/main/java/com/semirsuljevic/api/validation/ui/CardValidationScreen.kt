@@ -1,6 +1,5 @@
 package com.semirsuljevic.api.validation.ui
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,11 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,17 +19,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.times
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.semirsuljevic.R
+import com.semirsuljevic.api.validation.config.CardValidationConstants
 import com.semirsuljevic.api.validation.viewmodel.CardViewModel
 import com.semirsuljevic.ui.api.buttons.AppButton
 import com.semirsuljevic.ui.api.common.UiText
 import com.semirsuljevic.ui.api.screen.AppScreen
 import com.semirsuljevic.ui.api.theme.AppSizes
-
 
 @Composable
 fun CardValidationScreen(
@@ -58,37 +54,34 @@ fun CardValidationScreen(
             fillMaxSize()
                 .padding(horizontal = AppSizes.scaffoldHorizontal),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
-            AppButton(
-                label = UiText.StringResource(R.string.go_back).asString(),
-                onClick = viewModel::pop
-            )
+            Spacer(Modifier.height(CardValidationConstants.TOP_MARGIN))
             Text(
                 UiText.StringResource(R.string.card_validation_title).asString(),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onBackground
             )
-            Spacer(Modifier.height(AppSizes.large))
+            Spacer(Modifier.height(AppSizes.medium))
             Row (
                 modifier = Modifier.padding(horizontal = AppSizes.medium)
             ){
                 Icon(
-                    imageVector = Icons.Outlined.CheckCircle,
-                    contentDescription = "Check Circle",
+                    painter = painterResource(R.drawable.ic_secured),
+                    contentDescription = ""
                 )
-                Spacer(Modifier.width(AppSizes.small))
                 Text(
                     UiText.StringResource(R.string.card_validation_subtitle).asString(),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
-            Spacer(Modifier.height(AppSizes.large))
+            Spacer(Modifier.height(CardValidationConstants.TEXT_CARD_MARGIN))
             FrostedGlassBox()
-            Spacer(Modifier.height(2 * AppSizes.xxxLarge))
+            Spacer(Modifier.height(CardValidationConstants.CARD_BUTTON_MARGIN))
             AppButton(
-                label = "Click me",
+                label = UiText.StringResource(R.string.card_validation_button).asString(),
                 onClick = viewModel::submit,
                 enabled = viewModel.screenConfig.buttonEnabled,
                 loading = viewModel.screenConfig.loading,

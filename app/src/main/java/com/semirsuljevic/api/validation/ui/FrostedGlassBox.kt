@@ -1,64 +1,59 @@
 package com.semirsuljevic.api.validation.ui
 
-
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-
-
-
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RenderEffect
-
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.semirsuljevic.api.validation.viewmodel.CardValidationViewModel
+import com.semirsuljevic.ui.api.common.AppDivider
 import com.semirsuljevic.ui.api.textField.AppTextField
 import com.semirsuljevic.ui.api.theme.AppShapes
-import android.graphics.Shader
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.graphics.Brush
 import com.semirsuljevic.ui.api.theme.AppSizes
 
 @Composable
 fun FrostedGlassBox(
     viewModel: CardValidationViewModel = hiltViewModel()
 ) {
-    val blurRadius = 20f
+   
+    val gradient = Brush.linearGradient(
+        0f to MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+        
+        1f to Color.Transparent,
+
+    )
+  
+    val gradientBrush = Brush.linearGradient(
+        0f to MaterialTheme.colorScheme.onSurface,
+        0.2f to Color.Transparent,
+        0.8f to Color.Transparent,
+        1f to MaterialTheme.colorScheme.onSurface,
+    )
+
     Column(
         modifier = Modifier
             .height(intrinsicSize = IntrinsicSize.Min)
             .clip(AppShapes.largeRoundedCorner)
-            
-            .graphicsLayer {
-                android.graphics.RenderEffect.createBlurEffect(blurRadius, blurRadius, Shader.TileMode.CLAMP)
-                
-            }
+            .border(0.8.dp, gradientBrush, AppShapes.largeRoundedCorner)
             .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color.White.copy(alpha = 0.25f),
-                        Color.White.copy(alpha = 0.05f)
-                    )
-                ),
+                brush = gradient,
                 shape = AppShapes.largeRoundedCorner
             )
             .padding(horizontal = AppSizes.medium, vertical = AppSizes.large)
@@ -90,10 +85,16 @@ fun FrostedGlassBox(
                     onValueChange = viewModel::onExpirationChanged,
                     modifier = Modifier.width(IntrinsicSize.Min)
                         .widthIn(max = 120.dp),
-                    enabled = !viewModel.screenConfig.loading
+                    enabled = !viewModel.screenConfig.loading,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedBorderColor = Color.Transparent,
+                        unfocusedBorderColor = Color.Transparent,
+                    )
                 )
             }
-            VerticalDivider()
+            AppDivider()
             Box(
                 modifier = Modifier.width(IntrinsicSize.Min)
             ) {
@@ -102,7 +103,13 @@ fun FrostedGlassBox(
                     onValueChange = viewModel::onCvvChanged,
                     modifier = Modifier.width(IntrinsicSize.Min)
                         .widthIn(max = 120.dp),
-                    enabled = !viewModel.screenConfig.loading
+                    enabled = !viewModel.screenConfig.loading,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedBorderColor = Color.Transparent,
+                        unfocusedBorderColor = Color.Transparent,
+                    )
 
                 )
             }

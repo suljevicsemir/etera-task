@@ -18,7 +18,9 @@ import com.semirsuljevic.ui.api.screen.AppScreen
 fun OnboardingScreen(
     viewModel: OnboardingViewModel = hiltViewModel()
 ) {
-    AppScreen { 
+    AppScreen (
+        canNavigateBack = false
+    ){ 
         Column (
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,

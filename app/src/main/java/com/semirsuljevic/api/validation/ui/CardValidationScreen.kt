@@ -45,13 +45,15 @@ fun CardValidationScreen(
         }
     }
     val scrollState = rememberScrollState()
-    AppScreen {
+    AppScreen (
+        
+    ){ padding ->
         Column(
             modifier = Modifier
+                .padding(padding)
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .padding(it).
-            fillMaxSize()
+                .fillMaxSize()
                 .padding(horizontal = AppSizes.scaffoldHorizontal),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

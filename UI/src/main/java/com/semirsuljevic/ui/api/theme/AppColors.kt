@@ -8,19 +8,21 @@ import androidx.compose.ui.graphics.Color
 object AppColors {
     val DarkColorScheme = darkColorScheme(
         background = Color.Black,
-        //text on background
-        onBackground = Color.White,
-        //text on card background / containers
-        onSurface = Color.Gray,
-        error = Color.Red
+        //title / first text
+        onBackground = Color(0xffFAFAFA),
+        //desc/ second text
+        onSurface = Color(0xffBDBDBD),
+        onPrimaryContainer = Color(0xffF2F2F2),
+        error = Color.Red,
     )
 
     val LightColorScheme = lightColorScheme(
         background = Color.Black,
-        //text on background
-        onBackground = Color.White,
-        //text on card background / containers
-        onSurface = Color.Gray,
-        error = Color.Red
+        //title / first text
+        onBackground = Color(0xffFAFAFA),
+        //desc/ second text
+        onSurface = Color(0xffBDBDBD),
+        onPrimaryContainer = Color(0xffF2F2F2),
+        error = Color.Red,
     )
 }
